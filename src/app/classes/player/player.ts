@@ -11,6 +11,7 @@ export class Player {
 
   set firstName(value: string) {
     this._firstName = value;
+    this._fullName = `${this._firstName} ${this._lastName}`;
   }
 
   get lastName(): string {
@@ -19,6 +20,7 @@ export class Player {
 
   set lastName(value: string) {
     this._lastName = value;
+    this._fullName = `${this._firstName} ${this._lastName}`;
   }
 
   get fullName(): string {
@@ -56,6 +58,9 @@ export class Player {
       this._bankBalance = player._bankBalance;
     } else {
       this._playerId = uuid();
+      this._firstName = '';
+      this._lastName = '';
+      this._fullName = '';
       this._bankBalance = 1500;
     }
   }

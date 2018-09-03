@@ -7,6 +7,14 @@
     flex: 1;
 
     margin: 1em;
+
+    input[disabled] {
+      color: #000;
+    }
+
+    button {
+      margin: 0;
+    }
   }
 
   button {

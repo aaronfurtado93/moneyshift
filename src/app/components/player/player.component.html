@@ -1,14 +1,31 @@
 <div class="player-container">
+  <div matCardAvatar>
+    <mat-icon>person</mat-icon>
+  </div>
   <mat-form-field>
-    <input matInput [ngModel]="player.firstName" placeholder="First Name" [disabled]="true">
+    <input matInput placeholder="First Name" [formControl]="form.get('firstName')" name="firstName">
+    <button mat-button matSuffix (click)="editSaveOrCancelAction(player.playerId, 'firstName')">
+      <mat-icon>
+        {{ form.get('firstName').disabled ? 'edit' : form.valid ? 'save' : 'cancel'}}
+      </mat-icon>
+    </button>
   </mat-form-field>
+
   <mat-form-field>
-    <input matInput [ngModel]="player.lastName" placeholder="Last Name" [disabled]="true">
+    <input matInput placeholder="Last Name" [formControl]="form.get('lastName')" name="lastName">
+    <button mat-button matSuffix (click)="editSaveOrCancelAction(player.playerId, 'lastName')">
+      <mat-icon>
+        {{ form.get('lastName').disabled ? 'edit' : form.valid ? 'save' : 'cancel'}}
+      </mat-icon>
+    </button>
   </mat-form-field>
+
   <mat-form-field>
     <mat-icon matPrefix>account_balance_wallet</mat-icon>
-    <input matInput [ngModel]="player.bankBalance" placeholder="Bank Balance" [disabled]="true">
+    <span matPrefix>&nbsp;&nbsp;&nbsp;</span>
+    <input matInput placeholder="Bank Balance" [formControl]="form.get('bankBalance')" name="bankBalance">
   </mat-form-field>
+
   <button type="button" mat-raised-button color="primary" (click)="selectTransferSource(player.playerId)"
           [disabled]="selectedTransferSource"
   >

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Player} from '../../classes/player/player';
 import {AppStateManagementService} from '../../services/app-state-management/app-state-management.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-player',
@@ -15,10 +16,20 @@ export class PlayerComponent implements OnInit {
   }
   set player(value: Player) {
     this._player = new Player(value);
+    this.form.patchValue({
+      firstName: this._player.firstName,
+      lastName: this._player.lastName,
+    });
   }
 
+  private _player = new Player();
+
+  form = new FormGroup({
+    firstName: new FormControl(this.player.firstName, Validators.required),
+    lastName: new FormControl(this.player.lastName, Validators.required),
+    bankBalance: new FormControl(this.player.bankBalance, Validators.required)
+  });
   selectedTransferSource: string;
-  private _player: Player;
 
   constructor(
     private appStateManagementService: AppStateManagementService
@@ -26,6 +37,10 @@ export class PlayerComponent implements OnInit {
     this.appStateManagementService.SS.selectedTransferSource$.subscribe(
       value => this.selectedTransferSource = value
     );
+
+    this.form.get('firstName').disable();
+    this.form.get('lastName').disable();
+    this.form.get('bankBalance').disable();
   }
 
   ngOnInit() {
@@ -33,5 +48,28 @@ export class PlayerComponent implements OnInit {
 
   selectTransferSource(playerId: string) {
     this.appStateManagementService.SS.selectedTransferSource = playerId;
+  }
+
+  editSaveOrCancelAction(playerId: string, formControlName: string) {
+    if (this.form.get(formControlName).disabled) {
+      this.form.get(formControlName).enable();
+    } else if (this.form.valid) {
+      this.appStateManagementService.SS.players = this.appStateManagementService.SS.players.map(
+        value => {
+          value = new Player(value);
+          if (value.playerId === playerId) {
+            value[formControlName] = this.form.get(formControlName).value;
+          }
+          return value;
+        }
+      );
+      this.form.get(formControlName).disable();
+    } else {
+      this.form.patchValue({
+        firstName: this._player.firstName,
+        lastName: this._player.lastName
+      });
+      this.form.get(formControlName).disable();
+    }
   }
 }
