@@ -1,0 +1,34 @@
+mat-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  mat-card-header.icon-container {
+    flex: none;
+    margin-bottom: 0.25em;
+  }
+
+  mat-card-header {
+    flex: 1;
+    margin-left: 1em;
+    margin-right: 1em;
+
+    div[matCardAvatar] {
+      mat-icon {
+        font-size: 2.7em;
+      }
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+
+  mat-form-field {
+    display: flex;
+    flex: 1;
+    margin: 1em;
+  }
+
+  margin: 1em;
+}
