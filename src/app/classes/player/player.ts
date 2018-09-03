@@ -1,4 +1,10 @@
+import uuid from 'uuid/v1';
+
 export class Player {
+  get playerId(): string {
+    return this._playerId;
+  }
+
   get firstName(): string {
     return this._firstName;
   }
@@ -35,10 +41,14 @@ export class Player {
     this._bankBalance = value;
   }
 
+  private readonly _playerId: string;
   private _firstName: string;
   private _lastName: string;
   private _fullName: string;
-  private _bankBalance = 1500;
+  private _bankBalance: number;
 
-  constructor() {}
+  constructor() {
+    this._playerId = uuid();
+    this._bankBalance = 1500;
+  }
 }
