@@ -1,4 +1,9 @@
-<mat-form-field>
-  <input type="text" matInput placeholder="Player Full Name" [formControl]="form.get('fullName')">
-</mat-form-field>
-<button mat-raised-button color="primary" [disabled]="form.invalid" (click)="createPlayer()">Create Player</button>
+<form class="new-player-container">
+  <mat-form-field>
+    <input type="text" matInput placeholder="Player Full Name" [formControl]="form.get('fullName')">
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid" (click)="createPlayer()">
+    <mat-icon>person_add</mat-icon>
+    Create Player
+  </button>
+</form>

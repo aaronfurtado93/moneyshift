@@ -1,4 +1,4 @@
-.new-player-container {
+.player-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,10 +6,6 @@
   mat-form-field {
     flex: 1;
 
-    margin: 1em;
-  }
-
-  button {
     margin: 1em;
   }
 }

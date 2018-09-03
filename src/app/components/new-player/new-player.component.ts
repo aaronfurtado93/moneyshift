@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {FullName} from '../../validators/full-name/full-name';
 import {Player} from '../../classes/player/player';
 import {AppStateManagementService} from '../../services/app-state-management/app-state-management.service';
@@ -12,9 +12,7 @@ import {AppStateManagementService} from '../../services/app-state-management/app
 export class NewPlayerComponent implements OnInit {
 
   form = new FormGroup({
-    fullName: new FormControl('New Player', Validators.compose(
-      [FullName.validator]
-    ))
+    fullName: new FormControl('', FullName.validator)
   });
 
   constructor(

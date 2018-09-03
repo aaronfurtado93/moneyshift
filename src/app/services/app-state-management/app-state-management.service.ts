@@ -15,7 +15,7 @@ export class AppStateManagementService {
     const _SS = {...this.SS};
 
     for (const key in _SS) {
-      if (_SS[key]) {
+      if (!/^_\$/.test(key) && !/\$$/.test(key)) {
         this.sessionStorageService.get$(key)
           .subscribe(value => this.SS[`_$${key}`] = value);
 
@@ -24,7 +24,11 @@ export class AppStateManagementService {
           set: value => {
             this.sessionStorageService.set(key, value)
               .then();
-          }
+          },
+        });
+      } else if (/\$$/.test(key)) {
+        Object.defineProperty(this.SS, key, {
+          get: () => this.sessionStorageService.get$(key.replace('$', ''))
         });
       }
     }

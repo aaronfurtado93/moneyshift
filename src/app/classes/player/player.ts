@@ -47,8 +47,16 @@ export class Player {
   private _fullName: string;
   private _bankBalance: number;
 
-  constructor() {
-    this._playerId = uuid();
-    this._bankBalance = 1500;
+  constructor(player?: Player) {
+    if (player) {
+      this._playerId = player._playerId;
+      this._firstName = player._firstName;
+      this._lastName = player._lastName;
+      this._fullName = player._fullName;
+      this._bankBalance = player._bankBalance;
+    } else {
+      this._playerId = uuid();
+      this._bankBalance = 1500;
+    }
   }
 }

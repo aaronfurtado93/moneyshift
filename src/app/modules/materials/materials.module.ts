@@ -1,21 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
+import {FormsSystemModule} from '../forms-system/forms-system.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    FormsSystemModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule
   ],
   exports: [
-    ReactiveFormsModule,
+    FormsSystemModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule
   ]
 })
 export class MaterialsModule { }
