@@ -8,12 +8,16 @@
   </mat-card-header>
   <mat-card-header>
     <mat-card-title>Transferring From:</mat-card-title>
-    <mat-card-subtitle>Bank</mat-card-subtitle>
+    <mat-card-subtitle>{{selectedTransferSource ? selectedTransferSource : 'Bank'}}</mat-card-subtitle>
   </mat-card-header>
-  <mat-card-header>
-    <mat-card-title>Transferring To:</mat-card-title>
-    <mat-card-subtitle>dest</mat-card-subtitle>
-  </mat-card-header>
+  <mat-form-field>
+    <mat-select>
+      <mat-option *ngFor="let player of players" [value]="player.playerId"
+                  [disabled]="player.playerId === selectedTransferSource">
+        {{player.fullName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <mat-form-field>
     <input type="number" matInput placeholder="Transfer Amount">
   </mat-form-field>
@@ -26,7 +30,7 @@
     </button>
   </mat-card-header>
   <mat-card-header>
-    <button mat-stroked-button color="warn">
+    <button mat-stroked-button color="warn" (click)="cancelTransferProcess()">
       <mat-icon>
         cancel
       </mat-icon>
