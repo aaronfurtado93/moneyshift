@@ -6,6 +6,13 @@
     <input matInput [ngModel]="player.lastName" placeholder="Last Name" [disabled]="true">
   </mat-form-field>
   <mat-form-field>
+    <mat-icon matPrefix>account_balance_wallet</mat-icon>
     <input matInput [ngModel]="player.bankBalance" placeholder="Bank Balance" [disabled]="true">
   </mat-form-field>
+  <button type="button" mat-raised-button color="primary" (click)="selectTransferSource(player.playerId)"
+          [disabled]="selectedTransferSource"
+  >
+    <mat-icon>credit_card</mat-icon>
+    Transfer
+  </button>
 </div>

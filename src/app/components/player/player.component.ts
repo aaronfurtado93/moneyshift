@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Player} from '../../classes/player/player';
+import {AppStateManagementService} from '../../services/app-state-management/app-state-management.service';
 
 @Component({
   selector: 'app-player',
@@ -16,11 +17,21 @@ export class PlayerComponent implements OnInit {
     this._player = new Player(value);
   }
 
+  selectedTransferSource: string;
   private _player: Player;
 
-  constructor() { }
+  constructor(
+    private appStateManagementService: AppStateManagementService
+  ) {
+    this.appStateManagementService.SS.selectedTransferSource$.subscribe(
+      value => this.selectedTransferSource = value
+    );
+  }
 
   ngOnInit() {
   }
 
+  selectTransferSource(playerId: string) {
+    this.appStateManagementService.SS.selectedTransferSource = playerId;
+  }
 }

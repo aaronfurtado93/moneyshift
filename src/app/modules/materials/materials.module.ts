@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FormsSystemModule} from '../forms-system/forms-system.module';
 
@@ -8,6 +8,7 @@ import {FormsSystemModule} from '../forms-system/forms-system.module';
   imports: [
     CommonModule,
     FormsSystemModule,
+    MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
@@ -15,6 +16,7 @@ import {FormsSystemModule} from '../forms-system/forms-system.module';
   ],
   exports: [
     FormsSystemModule,
+    MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
