@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Player} from '../../classes/player/player';
 import {AppStateManagementService} from '../../services/app-state-management/app-state-management.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -8,7 +8,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss']
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent implements OnInit, OnDestroy {
 
   @Input()
   get player(): Player {
@@ -19,6 +19,7 @@ export class PlayerComponent implements OnInit {
     this.form.patchValue({
       firstName: this._player.firstName,
       lastName: this._player.lastName,
+      bankBalance: this._player.bankBalance
     });
   }
 
@@ -44,6 +45,9 @@ export class PlayerComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy(): void {
   }
 
   selectTransferSource(playerId: string) {

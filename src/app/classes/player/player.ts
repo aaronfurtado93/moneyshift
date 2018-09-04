@@ -40,7 +40,16 @@ export class Player {
   }
 
   set bankBalance(value: number) {
+    this._previousBankBalance = this._bankBalance;
     this._bankBalance = value;
+  }
+
+  get balanceIncreased(): boolean {
+    return this._balanceIncreased = this._bankBalance > this._previousBankBalance;
+  }
+
+  get balanceDecreased(): boolean {
+    return this._balanceDecreased = this._bankBalance < this._previousBankBalance;
   }
 
   private readonly _playerId: string;
@@ -48,6 +57,9 @@ export class Player {
   private _lastName: string;
   private _fullName: string;
   private _bankBalance: number;
+  private _previousBankBalance: number;
+  private _balanceIncreased: boolean;
+  private _balanceDecreased: boolean;
 
   constructor(player?: Player) {
     if (player) {
@@ -56,12 +68,14 @@ export class Player {
       this._lastName = player._lastName;
       this._fullName = player._fullName;
       this._bankBalance = player._bankBalance;
+      this._previousBankBalance = player._previousBankBalance;
     } else {
       this._playerId = uuid();
       this._firstName = '';
       this._lastName = '';
       this._fullName = '';
       this._bankBalance = 1500;
+      this._previousBankBalance = 1500;
     }
   }
 }

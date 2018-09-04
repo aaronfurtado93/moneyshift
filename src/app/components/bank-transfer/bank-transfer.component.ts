@@ -63,6 +63,9 @@ export class BankTransferComponent implements OnInit {
 
   cancelTransferProcess() {
     this.appStateManagementService.SS.selectedTransferSource = '';
-    this.form.reset();
+    this.form.reset({
+      selectedTransferDestination: '',
+      transferAmount: 0
+    });
   }
 }

@@ -12,6 +12,21 @@
       color: #000;
     }
 
+    input[name='bankBalance'] {
+      border: none;
+      font-size: large;
+    }
+
+    input.balanceIncreased {
+      animation-name: increaseBalanceAnimation;
+      animation-duration: 0.5s;
+    }
+
+    input.balanceDecreased {
+      animation-name: decreaseBalanceAnimation;
+      animation-duration: 0.5s;
+    }
+
     button {
       margin: 0;
     }
@@ -21,5 +36,27 @@
     flex: 0.5;
 
     margin: 1em;
+  }
+}
+
+@keyframes increaseBalanceAnimation {
+  50% {
+    color: #0f0;
+    font-size: xx-large;
+  }
+  100% {
+    color: #000;
+    font-size: large;
+  }
+}
+
+@keyframes decreaseBalanceAnimation {
+  50% {
+    color: #f00;
+    font-size: xx-large;
+  }
+  100% {
+    color: #000;
+    font-size: large;
   }
 }
