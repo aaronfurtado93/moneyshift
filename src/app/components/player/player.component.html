@@ -1,4 +1,4 @@
-<div class="player-container">
+<div class="player-container" (swipeleft)="displayRemoveButton()">
   <div matCardAvatar>
     <mat-icon>person</mat-icon>
   </div>
@@ -31,10 +31,17 @@
     >
   </mat-form-field>
 
-  <button type="button" mat-raised-button color="primary" (click)="selectTransferSource(player.playerId)"
+  <button mat-raised-button color="primary" (click)="selectTransferSource(player.playerId)"
           [disabled]="!!selectedTransferSource || deactivateTransferButton"
   >
     <mat-icon>credit_card</mat-icon>
     Transfer
+  </button>
+
+  <button mat-stroked-button color="warn" (click)="removePlayer(player.playerId)"
+          *ngIf="this.removeButtonSecondsCountdown !== 0"
+  >
+    <mat-icon>cancel</mat-icon>
+    Remove ({{this.removeButtonSecondsCountdown}})
   </button>
 </div>

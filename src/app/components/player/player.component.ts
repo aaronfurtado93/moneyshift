@@ -33,6 +33,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
     bankBalance: new FormControl(this.player.bankBalance, Validators.required)
   });
   selectedTransferSource: string;
+  removeButtonSecondsCountdown = 0;
 
   constructor(
     private appStateManagementService: AppStateManagementService
@@ -77,5 +78,29 @@ export class PlayerComponent implements OnInit, OnDestroy {
       });
       this.form.get(formControlName).disable();
     }
+  }
+
+  displayRemoveButton() {
+    this.removeButtonSecondsCountdown = 10;
+
+    const interval = setInterval(
+      () => {
+        this.removeButtonSecondsCountdown = this.removeButtonSecondsCountdown - 1;
+        if (this.removeButtonSecondsCountdown === 0) {
+          clearInterval(interval);
+        }
+      },
+      1000
+    );
+  }
+
+  removePlayer(playerId: string) {
+    this.appStateManagementService.SS.players = this.appStateManagementService.SS.players
+      .map(
+        value => new Player(value)
+      )
+      .filter(
+        value => value.playerId !== playerId
+      );
   }
 }
