@@ -53,6 +53,8 @@ export class BankTransferComponent implements OnInit {
           player.bankBalance = player.bankBalance - transferAmount;
         } else if (player.playerId === selectedTransferDestination) {
           player.bankBalance = player.bankBalance + transferAmount;
+        } else {
+          player.bankBalance = player.bankBalance;
         }
         return player;
       }

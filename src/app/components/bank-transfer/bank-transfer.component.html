@@ -11,7 +11,7 @@
     <mat-card-subtitle>{{selectedTransferSource ? (players | playerName : selectedTransferSource) : 'Bank'}}</mat-card-subtitle>
   </mat-card-header>
   <mat-form-field>
-    <mat-select [formControl]="form.get('selectedTransferDestination')">
+    <mat-select [formControl]="form.get('selectedTransferDestination')" placeholder="Transferring To:">
       <mat-option *ngFor="let player of players" [value]="player.playerId"
                   [disabled]="player.playerId === selectedTransferSource">
         {{player.fullName}}

@@ -23,6 +23,8 @@ export class PlayerComponent implements OnInit, OnDestroy {
     });
   }
 
+  @Input() deactivateTransferButton: boolean;
+
   private _player = new Player();
 
   form = new FormGroup({

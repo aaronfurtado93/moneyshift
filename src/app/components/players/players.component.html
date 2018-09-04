@@ -1,3 +1,4 @@
 <mat-card *ngIf="players && players.length > 0">
-  <app-player *ngFor="let player of players" [player]="player"></app-player>
+  <app-player *ngFor="let player of players" [player]="player"
+              [deactivateTransferButton]="players.length < 2"></app-player>
 </mat-card>
