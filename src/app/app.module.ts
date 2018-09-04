@@ -8,6 +8,7 @@ import {MaterialsModule} from './modules/materials/materials.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ComponentsModule} from './components/components.module';
 import {ServicesModule} from './services/services.module';
+import {PipesModule} from './pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {ServicesModule} from './services/services.module';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialsModule,
+    PipesModule,
     ComponentsModule,
     ServicesModule,
     AppRoutingModule

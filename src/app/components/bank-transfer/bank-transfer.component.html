@@ -8,10 +8,10 @@
   </mat-card-header>
   <mat-card-header>
     <mat-card-title>Transferring From:</mat-card-title>
-    <mat-card-subtitle>{{selectedTransferSource ? selectedTransferSource : 'Bank'}}</mat-card-subtitle>
+    <mat-card-subtitle>{{selectedTransferSource ? (players | playerName : selectedTransferSource) : 'Bank'}}</mat-card-subtitle>
   </mat-card-header>
   <mat-form-field>
-    <mat-select>
+    <mat-select [formControl]="form.get('selectedTransferDestination')">
       <mat-option *ngFor="let player of players" [value]="player.playerId"
                   [disabled]="player.playerId === selectedTransferSource">
         {{player.fullName}}
@@ -19,10 +19,10 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field>
-    <input type="number" matInput placeholder="Transfer Amount">
+    <input type="number" matInput placeholder="Transfer Amount" [formControl]="form.get('transferAmount')">
   </mat-form-field>
   <mat-card-header>
-    <button mat-raised-button color="primary">
+    <button mat-raised-button color="primary" (click)="makePayment()" [disabled]="form.invalid">
       <mat-icon>
         payment
       </mat-icon>
@@ -30,7 +30,7 @@
     </button>
   </mat-card-header>
   <mat-card-header>
-    <button mat-stroked-button color="warn" (click)="cancelTransferProcess()">
+    <button mat-stroked-button color="warn" (click)="cancelTransferProcess()" [disabled]="form.invalid">
       <mat-icon>
         cancel
       </mat-icon>

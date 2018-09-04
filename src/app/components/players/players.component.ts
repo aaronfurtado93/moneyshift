@@ -15,9 +15,11 @@ export class PlayersComponent implements OnInit {
     private appStateManagementService: AppStateManagementService
   ) {
     this.appStateManagementService.SS.players$.subscribe(
-      value => this.players = value.map(
-        value1 => new Player(value1)
-      )
+      value => {
+        return this.players = value ? value.map(
+          value1 => new Player(value1)
+        ) : [];
+      }
     );
   }
 
