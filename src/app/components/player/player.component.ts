@@ -33,6 +33,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
     bankBalance: new FormControl(this.player.bankBalance, Validators.required)
   });
   selectedTransferSource: string;
+  selectedTransferDestination: string;
   removeButtonSecondsCountdown = 0;
 
   constructor(
@@ -40,6 +41,10 @@ export class PlayerComponent implements OnInit, OnDestroy {
   ) {
     this.appStateManagementService.SS.selectedTransferSource$.subscribe(
       value => this.selectedTransferSource = value
+    );
+
+    this.appStateManagementService.SS.selectedTransferDestination$.subscribe(
+      value => this.selectedTransferDestination = value
     );
 
     this.form.get('firstName').disable();
@@ -55,6 +60,10 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
   selectTransferSource(playerId: string) {
     this.appStateManagementService.SS.selectedTransferSource = playerId;
+  }
+
+  selectTransferDestination(playerId: string) {
+    this.appStateManagementService.SS.selectedTransferDestination = playerId;
   }
 
   editSaveOrCancelAction(playerId: string, formControlName: string) {

@@ -44,6 +44,10 @@ export class BankTransferComponent implements OnInit {
         return this.selectedTransferSource = value;
       }
     );
+
+    this.appStateManagementService.SS.selectedTransferDestination$.subscribe(
+      value => this.form.get('selectedTransferDestination').setValue(value)
+    );
   }
 
   ngOnInit() {
@@ -72,6 +76,7 @@ export class BankTransferComponent implements OnInit {
 
   cancelTransferProcess() {
     this.appStateManagementService.SS.selectedTransferSource = '';
+    this.appStateManagementService.SS.selectedTransferDestination = '';
     this.form.reset({
       selectedTransferDestination: '',
       transferAmount: 0

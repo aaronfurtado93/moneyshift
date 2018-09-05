@@ -6,4 +6,6 @@ export class SessionStorageItems {
   static players$: Observable<Player[]> = new BehaviorSubject([]);
   static selectedTransferSource = '';
   static selectedTransferSource$: Observable<string> = new BehaviorSubject('');
+  static selectedTransferDestination = '';
+  static selectedTransferDestination$: Observable<string> = new BehaviorSubject('');
 }

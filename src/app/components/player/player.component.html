@@ -32,10 +32,17 @@
   </mat-form-field>
 
   <button mat-raised-button color="primary" (click)="selectTransferSource(player.playerId)"
-          [disabled]="!!selectedTransferSource || deactivateTransferButton"
+          [disabled]="!!selectedTransferSource || deactivateTransferButton || selectedTransferDestination === player.playerId"
   >
     <mat-icon>credit_card</mat-icon>
-    Transfer
+    Send
+  </button>
+
+  <button mat-raised-button color="primary" (click)="selectTransferDestination(player.playerId)"
+          [disabled]="!!selectedTransferDestination || deactivateTransferButton || selectedTransferSource === player.playerId"
+  >
+    <mat-icon>credit_card</mat-icon>
+    Receive
   </button>
 
   <button mat-stroked-button color="warn" (click)="removePlayer(player.playerId)"
