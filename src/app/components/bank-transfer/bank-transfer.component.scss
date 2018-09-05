@@ -1,32 +1,48 @@
 mat-card {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
 
-  mat-card-header.icon-container {
-    flex: none;
-    margin-bottom: 0.25em;
-  }
+  .banking-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  mat-card-header {
-    flex: 1;
-    margin-left: 1em;
-    margin-right: 1em;
+    mat-card-header.icon-container {
+      flex: none;
+      margin-bottom: 0.25em;
+    }
 
-    div[matCardAvatar] {
-      mat-icon {
-        font-size: 2.7em;
+    mat-card-header {
+      flex: 1;
+      margin-left: 1em;
+      margin-right: 1em;
+
+      div[matCardAvatar] {
+        mat-icon {
+          font-size: 2.7em;
+        }
+      }
+
+      button {
+        width: 100%;
       }
     }
 
-    button {
-      width: 100%;
+    mat-form-field {
+      display: flex;
+      flex: 1;
+      margin: 1em;
     }
-  }
 
-  mat-form-field {
-    display: flex;
-    flex: 1;
+    button {
+      display: flex;
+      flex: 1;
+      margin-right: 1em;
+      margin-left: 1em;
+    }
+
     margin: 1em;
   }
 

@@ -17,6 +17,13 @@ export class BankTransferComponent implements OnInit {
 
   selectedTransferSource: string;
   players: Player[];
+  paymentAmountTemplates = [
+    10,
+    25,
+    50,
+    100,
+    200
+  ];
 
   constructor(
     private appStateManagementService: AppStateManagementService

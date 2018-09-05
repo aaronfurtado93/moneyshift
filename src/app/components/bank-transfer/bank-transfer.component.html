@@ -1,47 +1,67 @@
 <mat-card>
-  <mat-card-header class="icon-container">
-    <div matCardAvatar>
+  <div class="banking-row">
+    <mat-card-header class="icon-container">
+      <div matCardAvatar>
+        <mat-icon>
+          account_balance
+        </mat-icon>
+      </div>
+    </mat-card-header>
+    <mat-card-header>
+      <mat-card-title>Transferring From:</mat-card-title>
+      <mat-card-subtitle>{{selectedTransferSource ? (players | playerName : selectedTransferSource) : 'Bank'}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-form-field>
+      <mat-select [formControl]="form.get('selectedTransferDestination')" placeholder="Transferring To:">
+        <mat-option *ngFor="let player of players" [value]="player.playerId"
+                    [disabled]="player.playerId === selectedTransferSource">
+          {{player.fullName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" matInput placeholder="Transfer Amount" [formControl]="form.get('transferAmount')">
+    </mat-form-field>
+    <mat-card-header>
+      <button mat-raised-button color="primary" (click)="makePayment()" [disabled]="form.invalid">
+        <mat-icon>
+          payment
+        </mat-icon>
+        Send
+      </button>
+    </mat-card-header>
+    <mat-card-header>
+      <button mat-stroked-button color="warn" (click)="cancelTransferProcess()" [disabled]="form.invalid">
+        <mat-icon>
+          cancel
+        </mat-icon>
+        Cancel
+      </button>
+    </mat-card-header>
+    <mat-card-header class="icon-container">
+      <div matCardAvatar>
+        <mat-icon>
+          account_balance
+        </mat-icon>
+      </div>
+    </mat-card-header>
+  </div>
+  <div class="banking-row">
+    <button mat-stroked-button color="primary" *ngFor="let paymentAmount of paymentAmountTemplates"
+            (click)="form.get('transferAmount').setValue(paymentAmount)">
       <mat-icon>
-        account_balance
+        attach_money
       </mat-icon>
-    </div>
-  </mat-card-header>
-  <mat-card-header>
-    <mat-card-title>Transferring From:</mat-card-title>
-    <mat-card-subtitle>{{selectedTransferSource ? (players | playerName : selectedTransferSource) : 'Bank'}}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-form-field>
-    <mat-select [formControl]="form.get('selectedTransferDestination')" placeholder="Transferring To:">
-      <mat-option *ngFor="let player of players" [value]="player.playerId"
-                  [disabled]="player.playerId === selectedTransferSource">
-        {{player.fullName}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <input type="number" matInput placeholder="Transfer Amount" [formControl]="form.get('transferAmount')">
-  </mat-form-field>
-  <mat-card-header>
-    <button mat-raised-button color="primary" (click)="makePayment()" [disabled]="form.invalid">
-      <mat-icon>
-        payment
-      </mat-icon>
-      Send
+      {{paymentAmount}}
     </button>
-  </mat-card-header>
-  <mat-card-header>
-    <button mat-stroked-button color="warn" (click)="cancelTransferProcess()" [disabled]="form.invalid">
+  </div>
+  <div class="banking-row">
+    <button mat-stroked-button color="warn" *ngFor="let paymentAmount of paymentAmountTemplates"
+            (click)="form.get('transferAmount').setValue(-paymentAmount)">
       <mat-icon>
-        cancel
+        attach_money
       </mat-icon>
-      Cancel
+      {{paymentAmount}}
     </button>
-  </mat-card-header>
-  <mat-card-header class="icon-container">
-    <div matCardAvatar>
-      <mat-icon>
-        account_balance
-      </mat-icon>
-    </div>
-  </mat-card-header>
+  </div>
 </mat-card>
