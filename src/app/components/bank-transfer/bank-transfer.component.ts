@@ -22,6 +22,7 @@ export class BankTransferComponent implements OnInit {
     25,
     50,
     100,
+    150,
     200
   ];
 
