@@ -72,6 +72,11 @@ export class BankTransferComponent implements OnInit {
       }
     );
 
+    const cashRegisterAudio = new Audio('/assets/cash-register.sound.mp3');
+    cashRegisterAudio.play()
+      .then()
+      .catch();
+
     this.cancelTransferProcess();
   }
 
