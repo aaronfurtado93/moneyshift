@@ -9,10 +9,13 @@
     </mat-card-header>
     <mat-card-header>
       <mat-card-title>Transferring From:</mat-card-title>
-      <mat-card-subtitle>{{selectedTransferSource ? (players | playerName : selectedTransferSource) : 'Bank'}}</mat-card-subtitle>
+      <mat-card-subtitle>
+        {{selectedTransferSource ? (players | playerName : selectedTransferSource) : 'Bank'}}
+      </mat-card-subtitle>
     </mat-card-header>
     <mat-form-field>
-      <mat-select [formControl]="form.get('selectedTransferDestination')" placeholder="Transferring To:">
+      <mat-select [formControl]="form.get('selectedTransferDestination')" placeholder="Transferring To:"
+                  (valueChange)="selectedTransferDestinationValueChanged()">
         <mat-option *ngFor="let player of players" [value]="player.playerId"
                     [disabled]="player.playerId === selectedTransferSource">
           {{player.fullName}}

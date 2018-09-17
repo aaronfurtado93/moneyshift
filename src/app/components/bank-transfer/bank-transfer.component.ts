@@ -47,7 +47,12 @@ export class BankTransferComponent implements OnInit {
     );
 
     this.appStateManagementService.SS.selectedTransferDestination$.subscribe(
-      value => this.form.get('selectedTransferDestination').setValue(value)
+      value => {
+        if (this.form.get('selectedTransferDestination').value === value) {
+          return;
+        }
+        return this.form.get('selectedTransferDestination').setValue(value);
+      }
     );
   }
 
@@ -87,5 +92,12 @@ export class BankTransferComponent implements OnInit {
       selectedTransferDestination: '',
       transferAmount: 0
     });
+  }
+
+  selectedTransferDestinationValueChanged() {
+    const selectedTransferDestination = this.form.get('selectedTransferDestination').value;
+    if (selectedTransferDestination) {
+      this.appStateManagementService.SS.selectedTransferDestination = selectedTransferDestination;
+    }
   }
 }
