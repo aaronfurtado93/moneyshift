@@ -4,6 +4,7 @@ import {NewPlayerModule} from './new-player/new-player.module';
 import {PlayerModule} from './player/player.module';
 import {PlayersModule} from './players/players.module';
 import {BankTransferModule} from './bank-transfer/bank-transfer.module';
+import {DiceModule} from './dice/dice.module';
 
 @NgModule({
   imports: [
@@ -11,13 +12,15 @@ import {BankTransferModule} from './bank-transfer/bank-transfer.module';
     NewPlayerModule,
     PlayerModule,
     PlayersModule,
-    BankTransferModule
+    BankTransferModule,
+    DiceModule
   ],
   exports: [
     NewPlayerModule,
     PlayerModule,
     PlayersModule,
-    BankTransferModule
+    BankTransferModule,
+    DiceModule
   ]
 })
 export class ComponentsModule { }
