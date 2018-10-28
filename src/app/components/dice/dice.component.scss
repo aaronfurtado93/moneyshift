@@ -1,0 +1,24 @@
+mat-card {
+  margin: 1em;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.dice-component {
+  display: flex;
+
+  .dice-number {
+    flex: 1;
+    font-size: 2em;
+    text-align: center;
+  }
+
+  .dice-total {
+    font-size: 3em;
+  }
+
+  button {
+    flex: 1;
+  }
+}
