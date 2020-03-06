@@ -1,4 +1,4 @@
-import uuid from 'uuid/v1';
+import {v1 as uuidv1} from 'uuid';
 
 export class Player {
   get playerId(): string {
@@ -70,7 +70,7 @@ export class Player {
       this._bankBalance = player._bankBalance;
       this._previousBankBalance = player._previousBankBalance;
     } else {
-      this._playerId = uuid();
+      this._playerId = uuidv1();
       this._firstName = '';
       this._lastName = '';
       this._fullName = '';
